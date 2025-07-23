@@ -40,8 +40,8 @@ export const Registration = ({setIsRegister}) => {
       };
       console.log(payload, "payload");
       localStorage.setItem("user", JSON.stringify(payload));
-      // alert("Form submitted successfully!");
-      // setUserName(""); setEmail(""); setPassword("");
+      alert("Form submitted successfully!");
+      setUserName(""); setEmail(""); setPassword("");
       setIsRegister(true)
     }
   }
