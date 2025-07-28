@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Registration } from "./pages/Registration"
 import { Login } from './pages/Login'
+import products from "./data"
+import Dashboard from './pages/Dashboard'
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
     
     {/* <Registration/>
     <Login /> */}
+
+    <Dashboard products={products}/>
     </>
   )
 }
