@@ -6,6 +6,7 @@ import { Registration } from "./pages/Registration"
 import { Login } from './pages/Login'
 import products from "./data"
 import Dashboard from './pages/Dashboard'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 
 function App() {
@@ -14,12 +15,22 @@ function App() {
 
   return (
     <>
-    {isRegister ? (<Login />) : (<Registration setIsRegister={setIsRegister}/>)}
-    
-    {/* <Registration/>
-    <Login /> */}
 
-    <Dashboard products={products}/>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Login/>}></Route>
+      <Route path='/register' element={<Registration setIsRegister={setIsRegister}/>}></Route>
+      <Route path='/dashboard' element={<Dashboard products={products}/>}></Route>
+    </Routes>
+    </BrowserRouter>
+
+
+
+
+
+    {/* {isRegister ? (<Login />) : (<Registration setIsRegister={setIsRegister}/>)}
+
+    <Dashboard products={products}/> */}
     </>
   )
 }
