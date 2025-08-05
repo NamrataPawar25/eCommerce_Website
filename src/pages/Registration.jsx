@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './Style.css'; // custom styles
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Registration = ({setIsRegister}) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
+  const navigate= useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -41,8 +43,9 @@ export const Registration = ({setIsRegister}) => {
       console.log(payload, "payload");
       localStorage.setItem("user", JSON.stringify(payload));
       alert("Form submitted successfully!");
-      setUserName(""); setEmail(""); setPassword("");
       setIsRegister(true)
+      navigate("/")
+      setUserName(""); setEmail(""); setPassword("");
     }
   }
 
@@ -97,6 +100,7 @@ export const Registration = ({setIsRegister}) => {
           </div>
 
           <button type="submit" className="btn btn-primary w-100">Register</button>
+          <Link to="/">Already Registerd</Link>
         </form>
       </div>
     </div>
