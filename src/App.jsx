@@ -7,6 +7,7 @@ import { Login } from './pages/Login'
 import products from "./data"
 import Dashboard from './pages/Dashboard'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ProductInfo from './pages/ProductInfo'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route path="/" element={<Login/>}></Route>
       <Route path='/register' element={<Registration setIsRegister={setIsRegister}/>}></Route>
       <Route path='/dashboard' element={<Dashboard products={products}/>}></Route>
+      <Route path='/dashboard/:ID/*' element={<ProductInfo/>}></Route>
     </Routes>
     </BrowserRouter>
 
