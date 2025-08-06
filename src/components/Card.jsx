@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import products from '../data'
 
 const Card = ({product}) => {
     return (
@@ -8,8 +10,8 @@ const Card = ({product}) => {
                     <div className="card-body">
                         <h5 className="card-title">{product.name}</h5>
                         <p className="card-text">{product.description}</p>
-                        {product.discount ?(<p>Price: ₹<del>{product.price}</del><span className='ps-2'>{product.discountedPrice}</span></p>):(<p>{product.price}</p>)}
-                        <a href="#" className="btn btn-primary">View More</a>
+                        {product.discount ?(<p>Price: ₹<del>{product.price}</del><span className='ps-2'>{product.discountedPrice}</span></p>):(<p>Price: ₹{product.price}</p>)}
+                        <Link to= {`/dashboard/${product.id}`} className="btn btn-primary">View More</Link>
                         <button className='btn btn-secondary ms-3'>Add to cart</button>
                     </div>
             </div>
