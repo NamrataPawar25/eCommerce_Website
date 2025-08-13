@@ -8,29 +8,37 @@ import products from "./data"
 import Dashboard from './pages/Dashboard'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ProductInfo from './pages/ProductInfo'
+import {ThemeProvider} from './context/ThemeProvider'
+import Navbar from './components/Navbar'
+import { AuthProvider } from './context/Authprovider'
+
 
 
 function App() {
   const [count, setCount] = useState(0)
-  const [isRegister, setIsRegister]= useState(false)
+  const [isRegister, setIsRegister] = useState(false)
 
   return (
     <>
+      <ThemeProvider>
+        <BrowserRouter>
+        <AuthProvider>
+        <Navbar/>
+          <Routes>
+            <Route path="/" element={<Login />}></Route>
+            <Route path='/register' element={<Registration setIsRegister={setIsRegister} />}></Route>
+            <Route path='/dashboard' element={<Dashboard products={products} />}></Route>
+            <Route path='/dashboard/:ID/*' element={<ProductInfo />}></Route>
+          </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </ThemeProvider>
 
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Login/>}></Route>
-      <Route path='/register' element={<Registration setIsRegister={setIsRegister}/>}></Route>
-      <Route path='/dashboard' element={<Dashboard products={products}/>}></Route>
-      <Route path='/dashboard/:ID/*' element={<ProductInfo/>}></Route>
-    </Routes>
-    </BrowserRouter>
 
 
 
 
-
-    {/* {isRegister ? (<Login />) : (<Registration setIsRegister={setIsRegister}/>)}
+      {/* {isRegister ? (<Login />) : (<Registration setIsRegister={setIsRegister}/>)}
 
     <Dashboard products={products}/> */}
     </>
