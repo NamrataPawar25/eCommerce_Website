@@ -1,28 +1,26 @@
 // Login.tsx
 import React, { useEffect, useState } from 'react';
-import './Style.css'; 
+import './Style.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/Authprovider';
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({});
-  const navigate =useNavigate();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    const u= JSON.parse(localStorage.getItem("user"))
-    console.log(typeof u ,"in effect");
-    setUser({...user, ...u});
-  },[])
+  const { loggedUser, login } = useContext(AuthContext)
 
   function handleLogin(e) {
     e.preventDefault();
     try {
-      if(user.email==email && user.password == password){
-        alert("Success")
+      const mgs = login(email, password)
+      if (mgs) {
+        alert(mgs)
         navigate("/dashboard")
       }
-      else{
+      else {
         alert("Invalid Credientials")
         navigate('/')
       }
@@ -30,7 +28,7 @@ export const Login = () => {
       console.log(error);
     }
   };
-
+  console.log(loggedUser, "in login page");
   return (
     <div className="registration-wrapper d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '400px' }}>
