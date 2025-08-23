@@ -1,5 +1,5 @@
 // Login.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -11,6 +11,13 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { loggedUser, login } = useContext(AuthContext)
+  const inputRef = useRef();
+
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
 
   function handleLogin(e) {
     e.preventDefault();
@@ -41,6 +48,7 @@ export const Login = () => {
               className="form-control"
               id="loginEmail"
               placeholder="you@example.com"
+              ref={inputRef}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

@@ -2,11 +2,13 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, Route, Routes, useParams } from "react-router-dom";
 import products from "../data";
 import { CreateTheme } from "../context/ThemeProvider";
+import { CartContext } from '../context/CartContext';
 
 const ProductInfo = () => {
   const [product, setProduct] = useState({});
   const { ID } = useParams();
   const { theme } = useContext(CreateTheme)
+  const{ addToCart}= useContext(CartContext)
 
   async function fetchData() {
     const index = products.findIndex((p, i) => p.id == ID);
@@ -65,7 +67,7 @@ const ProductInfo = () => {
                 </span>
               </div>
 
-              <button className="btn btn-success btn-lg mt-3">
+              <button className="btn btn-success btn-lg mt-3" onClick={() => addToCart(product)}>
                 Add to Cart
               </button>
               <div className="mt-3">

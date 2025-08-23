@@ -11,6 +11,8 @@ import ProductInfo from './pages/ProductInfo'
 import {ThemeProvider} from './context/ThemeProvider'
 import Navbar from './components/Navbar'
 import { AuthProvider } from './context/Authprovider'
+import { CartProvider } from './context/CartContext'
+import CartPage from './pages/CartPage'
 
 
 
@@ -23,13 +25,16 @@ function App() {
       <ThemeProvider>
         <BrowserRouter>
         <AuthProvider>
+          <CartProvider>
         <Navbar/>
           <Routes>
             <Route path="/" element={<Login />}></Route>
             <Route path='/register' element={<Registration setIsRegister={setIsRegister} />}></Route>
             <Route path='/dashboard' element={<Dashboard products={products} />}></Route>
             <Route path='/dashboard/:ID/*' element={<ProductInfo />}></Route>
+            <Route path="/cart" element={<CartPage />} />
           </Routes>
+          </CartProvider>
           </AuthProvider>
         </BrowserRouter>
       </ThemeProvider>

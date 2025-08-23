@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CreateTheme } from "../context/ThemeProvider";
+import { CartContext } from '../context/CartContext';
 
 const Card = ({ product }) => {
   const { theme } = useContext(CreateTheme);
+  const { addToCart } = useContext(CartContext);
+  
 
   return (
     <div>
@@ -18,7 +21,7 @@ const Card = ({ product }) => {
             <p>Price: ₹{product.price}</p>
           )}
           <Link to={`/dashboard/${product.id}`} className="btn btn-primary">View More</Link>
-          <button className='btn btn-secondary ms-3'>Add to cart</button>
+          <button className='btn btn-secondary ms-3' onClick={() => addToCart(product)}>Add to cart</button>
         </div>
       </div>
     </div>
